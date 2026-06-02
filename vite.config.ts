@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import svg from 'vite-svg-loader';
 
 export default defineConfig({
-  base: '/ThryvAppointment/',
+  base: process.env.NODE_ENV === 'production' ? '/ThryvAppointment/' : '/',
   server: {
     port: 4200,
     host: 'localhost',
