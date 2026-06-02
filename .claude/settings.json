@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // \"\"' | { read -r f; if echo \"$f\" | grep -q '\\.vue$'; then echo '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"CONTENT GUIDE REMINDER: Check these Thryv Product Content Guide rules in the file you just edited:\\n1. Sentence case for ALL UI text — never title case\\n2. Periods on complete sentences in body copy/descriptions/alerts — NOT on buttons, labels, or headlines\\n3. No ampersands — spell out and\\n4. No ellipses — rephrase instead\\n5. Use customer not user in visible UI copy\\n6. Button labels: start with a verb, under 25 chars\\n7. No are you sure phrasing in modals\\n8. No please — direct, confident copy\\nFix any violations before proceeding.\"}}'; fi; } 2>/dev/null || true",
+            "statusMessage": "Checking content guide…"
+          }
+        ]
+      }
+    ]
+  }
+}
